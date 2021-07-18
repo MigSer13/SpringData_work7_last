@@ -8,6 +8,7 @@ import ru.geekbrains.market.model.Product;
 import ru.geekbrains.market.repositories.ProductRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -58,7 +59,7 @@ public class ProductService {
         return productRepository.findAllByPriceBetween(minPrice, maxPrice);
     }
 
-    public Page<Product> findPage(int page, int size){
-        return productRepository.findAll(PageRequest.of(page, size));
+    public List<Product> findPage(int page, int size){
+        return productRepository.findAll(PageRequest.of(page, size)).get().collect(Collectors.toList());
     }
 }

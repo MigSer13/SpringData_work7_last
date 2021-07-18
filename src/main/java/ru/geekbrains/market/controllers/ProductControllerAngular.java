@@ -29,7 +29,7 @@ public class ProductControllerAngular {
     }
 
     @GetMapping("/app/products/page/{numder}")
-    public Page<Product> showPageOfProducts(@PathVariable int numder){
+    public List<Product> showPageOfProducts(@PathVariable int numder){
         return productService.findPage(numder-1, 10);
     }
 

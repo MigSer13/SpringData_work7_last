@@ -36,6 +36,7 @@ angular.module('appMarket', []).controller('angularController', function($scope,
             metod: 'GET',
             params: {}
             }).then(function(response){
+                $scope.products = response.data;
                 });
     };
 

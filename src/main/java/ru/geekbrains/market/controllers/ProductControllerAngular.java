@@ -30,7 +30,7 @@ public class ProductControllerAngular {
 
     @GetMapping("/app/products/page/{numder}")
     public Page<Product> showPageOfProducts(@PathVariable int numder){
-        return productService.findPage(numder, 10);
+        return productService.findPage(numder-1, 10);
     }
 
 

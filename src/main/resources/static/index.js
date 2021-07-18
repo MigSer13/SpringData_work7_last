@@ -1,5 +1,5 @@
 angular.module('appMarket', []).controller('angularController', function($scope, $http){
-    $scope.page
+    $scope.numberOfPage = 1;
     $scope.listProducts = function(){
         $http({
             url: 'http://localhost:8180/market/app/products',
@@ -21,14 +21,41 @@ angular.module('appMarket', []).controller('angularController', function($scope,
     };
 
     $scope.deleteOfProduct = function(idProduct){
-             $http({
-                url: 'http://localhost:8180/market/app/products/delete/' + idProduct,
-                metod: 'GET',
-                params: {}
-                }).then(function(response){
-                    $scope.listProducts();
-                    });
+         $http({
+            url: 'http://localhost:8180/market/app/products/delete/' + idProduct,
+            metod: 'GET',
+            params: {}
+            }).then(function(response){
+                $scope.listProducts();
+                });
         };
+
+    $scope.showPageOfProducts = function(numberOfPage){
+        $http({
+            url: 'http://localhost:8180/market/app/products/page/' + numberOfPage,
+            metod: 'GET',
+            params: {}
+            }).then(function(response){
+                });
+    };
+
+    $scope.previusPage = function(){
+        if($scope.numberOfPage <= 0) {
+            $scope.numberOfPage = 1;
+        }else{
+            $scope.numberOfPage -= 1;
+        }
+        $scope.showPageOfProducts($scope.numberOfPage);
+    }
+
+   $scope.nextPage = function(){
+            if($scope.numberOfPage <= 0) {
+                $scope.numberOfPage = 1;
+            }else{
+                $scope.numberOfPage += 1;
+            }
+            $scope.showPageOfProducts($scope.numberOfPage);
+        }
 
     $scope.listProducts();
 });

@@ -1,6 +1,7 @@
 package ru.geekbrains.market.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.market.model.Product;
 import ru.geekbrains.market.services.ProductService;
@@ -27,6 +28,15 @@ public class ProductControllerAngular {
         productService.deletedByID(id);
     }
 
+    @GetMapping("/app/products/page/{numder}")
+    public Page<Product> showPageOfProducts(@PathVariable int numder){
+        return productService.findPage(numder, 10);
+    }
+
+
+
+
+    //далее остались старые методы из прошлых уроков
     @GetMapping("/add")
     public String addProduct(){
         return "add_form";

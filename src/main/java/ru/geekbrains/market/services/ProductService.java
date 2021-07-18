@@ -1,6 +1,8 @@
 package ru.geekbrains.market.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.market.model.Product;
 import ru.geekbrains.market.repositories.ProductRepository;
@@ -56,4 +58,7 @@ public class ProductService {
         return productRepository.findAllByPriceBetween(minPrice, maxPrice);
     }
 
+    public Page<Product> findPage(int page, int size){
+        return productRepository.findAll(PageRequest.of(page, size));
+    }
 }

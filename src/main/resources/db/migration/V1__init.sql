@@ -1,6 +1,5 @@
 create table products (id bigserial primary key, title varchar(255), price int);
-insert into products (title, price)
-values
+insert into products (title, price) values
 ('Bread',39),
 ('Apple',13),
 ('Pear',17),
